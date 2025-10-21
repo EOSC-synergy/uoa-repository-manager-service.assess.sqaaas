@@ -1,0 +1,56 @@
+config:
+  credentials: []
+  project_repos:
+    code-repo.d4science.org/MaDgIK/uoa-repository-manager-service:
+      branch: master
+      repo: https://code-repo.d4science.org/MaDgIK/uoa-repository-manager-service
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      code-repo.d4science.org/MaDgIK/uoa-repository-manager-service git:
+        commands:
+        - /usr/bin/env sh .sqa/script.smelly-amber-uguisu.sh
+        container: qc.acc_blurry-puce-setter
+  QC.Doc:
+    repos:
+      code-repo.d4science.org/MaDgIK/uoa-repository-manager-service find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.skimpy-pear-slug.sh
+        container: qc.doc_sloppy-silver-bird
+      code-repo.d4science.org/MaDgIK/uoa-repository-manager-service git:
+        commands:
+        - /usr/bin/env sh .sqa/script.crappy-zucchini-hippopotamus.sh
+        container: qc.doc_pasty-mustard-kangaroo
+      code-repo.d4science.org/MaDgIK/uoa-repository-manager-service markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.sleazy-blue-meerkat.sh
+        container: qc.doc_wimpy-bistre-bison
+  QC.Lic:
+    repos:
+      code-repo.d4science.org/MaDgIK/uoa-repository-manager-service licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.sickly-xanthic-duck.sh
+        container: qc.lic_boozy-cardinal-mole
+  QC.Sty:
+    repos:
+      code-repo.d4science.org/MaDgIK/uoa-repository-manager-service checkstyle:
+        commands:
+        - /usr/bin/env sh .sqa/script.beady-lime-bonobo.sh
+        container: qc.sty_gloppy-tan-jellyfish
+      code-repo.d4science.org/MaDgIK/uoa-repository-manager-service hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.shaggy-razzmatazz-capuchin.sh
+        container: qc.sty_flimsy-ecru-dane
+  QC.Ver:
+    repos:
+      code-repo.d4science.org/MaDgIK/uoa-repository-manager-service get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.boozy-malachite-lionfish.sh
+        container: qc.ver_woozy-scarlet-shrimp
+timeout: 5400
